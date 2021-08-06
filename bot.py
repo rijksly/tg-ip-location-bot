@@ -20,7 +20,7 @@ def ip(message):
     ip = ip[4:]
     json = get('http://ipwhois.app/json/' + ip).json()
     print(json)
-    if json['success'] == True:
+    if json['success'] == True and not ip == '127.0.0.1':
         bot.send_message(message.from_user.id, 'IP: ' + json['ip'] + '\nLocation: ' + json['city'] + ', ' + json['region'] + ', ' + json['country'] + '\nTimezone: ' + json['timezone_name'])
     else:
         bot.send_message(message.from_user.id, 'Error')
